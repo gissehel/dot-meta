@@ -1,17 +1,16 @@
-git clone https://github.com/gissehel/dotfiler ~/.dotfiles
-if [ -d ~/.dotfiles/dot-gissehel ]; then
-    cd ~/.dotfiles/dot-gissehel
-    git remote set-url origin git@github.com:gissehel/dot-gissehel.git
-    git pull
-else
-    git clone git@github.com:gissehel/dot-gissehel.git ~/.dotfiles/dot-gissehel
-fi
-if [ -d ~/.dotfiles/dot-meta ]; then
-    cd ~/.dotfiles/dot-meta
-    git remote set-url origin git@github.com:gissehel/dot-meta.git
-    git pull
-else
-    git clone git@github.com:gissehel/dot-meta.git ~/.dotfiles/dot-meta
-fi
+[ -d ~/.dotfiles ] || git clone https://github.com/gissehel/dotfiler ~/.dotfiles
+function instal_or_rename_repo {
+    REPO="$1"
+    DIR="$2"
+    if [ -d "${DIR}" ]; then
+        cd "${DIR}"
+        git remote set-url origin "${REPO}"
+        git pull
+    else
+        git clone "${REPO}" "${DIR}"
+    fi
+}
+instal_or_rename_repo git@github.com:gissehel/dot-gissehel.git ~/.dotfiles/dot-gissehel
+instal_or_rename_repo git@github.com:gissehel/dot-meta.git ~/.dotfiles/dot-meta
 ~/.dotfiles/bin/dot update
 
