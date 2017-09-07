@@ -1,0 +1,5 @@
+git clone https://github.com/gissehel/dotfiler ~/.dotfiles
+git clone git@github.com:gissehel/dot-gissehel.git ~/.dotfiles/dot-gissehel
+git clone git@github.com:gissehel/dot-meta.git ~/.dotfiles/dot-meta
+~/.dotfiles/bin/dot update
+
