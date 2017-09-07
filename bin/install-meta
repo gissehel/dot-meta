@@ -1,5 +1,17 @@
 git clone https://github.com/gissehel/dotfiler ~/.dotfiles
-git clone git@github.com:gissehel/dot-gissehel.git ~/.dotfiles/dot-gissehel
-git clone git@github.com:gissehel/dot-meta.git ~/.dotfiles/dot-meta
+if [ -d ~/.dotfiles/dot-gissehel ]; then 
+    cd ~/.dotfiles/dot-gissehel
+    git remote set-url git@github.com:gissehel/dot-gissehel.git
+    git pull
+else
+    git clone git@github.com:gissehel/dot-gissehel.git ~/.dotfiles/dot-gissehel
+fi
+if [ -d ~/.dotfiles/dot-meta ]; then
+    cd ~/.dotfiles/dot-meta
+    git remote set-url git@github.com:gissehel/dot-meta.git
+    git pull
+else
+    git clone git@github.com:gissehel/dot-meta.git ~/.dotfiles/dot-meta
+fi
 ~/.dotfiles/bin/dot update
 
