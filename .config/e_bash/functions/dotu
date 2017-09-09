@@ -1,0 +1,9 @@
+dotu() {
+    if [ ! -f ~/.dotfiles/.last-auto-pull ] || test `find ~/.dotfiles/.last-auto-pull -mmin +1440` 
+    then
+        ~/.dotfiles/bin/dot update
+        date > ~/.dotfiles/.last-auto-pull
+    else
+        ~/.dotfiles/bin/dot update --skip-pull
+    fi
+}
