@@ -1,5 +1,7 @@
 [ -d ~/.dotfiles ] || git clone https://github.com/gissehel/dotfiler ~/.dotfiles
 ~/.dotfiles/bin/dot update
+mkdir -p ~/bin
+[ -f ~/bin/dot ] || ln -s ~/.dotfiles/bin/dot ~/bin/dot
 
 (grep e_bash ~/.bashrc >/dev/null 2>&1) || echo "[ -f ~/.config/e_bash/rc ] && . ~/.config/e_bash/rc" >> ~/.bashrc
 

@@ -1,5 +1,5 @@
 function addfunction {
-    filename="$E_FUNCTION_DIR"/"$1"
+    filename="$E_BASH_DIR"/functions/"$1"
     if [ -e "$filename" ] ;
     then
         mv "$filename" "$E_BASH_DIR"/__old__/function-"$1"-"$(date +%s)"
