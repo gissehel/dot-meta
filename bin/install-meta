@@ -1,21 +1,5 @@
 [ -d ~/.dotfiles ] || git clone https://github.com/gissehel/dotfiler ~/.dotfiles
-function install_or_rename_repo {
-    URL="$1"
-    NAME="$2"
-    if [ -d ~/".dotfiles/${NAME}" ]; then
-        cd ~/".dotfiles/${NAME}"
-        git remote set-url origin "${URL}"
-        git pull
-    elif [ -d ~/".dotfiles/dot-${NAME}" ]; then
-        cd ~/".dotfiles/dot-${NAME}"
-        git remote set-url origin "${URL}"
-        git pull
-    else
-        echo "git clone \"${URL}\" ~/\".dotfiles/dot-${NAME}\""
-        git clone "${URL}" ~/".dotfiles/dot-${NAME}"
-    fi
-}
-install_or_rename_repo git@github.com:gissehel/dot-gissehel.git gissehel
-install_or_rename_repo git@github.com:gissehel/dot-meta.git meta
 ~/.dotfiles/bin/dot update
+
+(grep e_bash ~/.bashrc >/dev/null 2>&1) || echo "[ -f ~/.config/e_bash/rc ] && . ~/.config/e_bash/rc" >> ~/.bashrc
 

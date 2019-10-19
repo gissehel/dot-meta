@@ -1,0 +1,10 @@
+function addinclude {
+    filename="$E_INCLUDE_DIR"/"$1"
+    if [ -e "$filename" ] ;
+    then
+        mv "$filename" "$E_BASH_DIR"/__old__/include-"$1"-"$(date +%s)"
+    fi
+    echo "$@" > "$filename"
+    vi "$filename"
+    . "$filename"
+}

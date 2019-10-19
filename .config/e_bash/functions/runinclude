@@ -1,0 +1,3 @@
+function runinclude {
+    . "$E_BASH_DIR"/includes/"$1"
+}
