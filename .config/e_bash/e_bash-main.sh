@@ -10,9 +10,13 @@ include-all-in-dir() {
         . "${filename}"
     done
 }
+e-bash-include-all() {
+    dirname="$1"
+    include-all-in-dir "${E_BASH_DIR}/${dirname}"
+}
 start-e_bash() {
-    include-all-in-dir "${E_BASH_DIR}/functions"
-    include-all-in-dir "${E_BASH_DIR}/aliases"
-    include-all-in-dir "${E_BASH_DIR}/envvars"
-    include-all-in-dir "${E_BASH_DIR}/includes"
+    e-bash-include-all "functions"
+    e-bash-include-all "aliases"
+    e-bash-include-all "envvars"
+    e-bash-include-all "includes"
 }
