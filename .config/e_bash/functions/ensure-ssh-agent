@@ -14,11 +14,20 @@ function start_agent {
 function ensure-ssh-agent {
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
-        if [ $(ps auxw | grep " ${SSH_AGENT_PID} " | grep ssh-agent | wc -l) != "1" ]
+        if [ "$(ssh-add -l 2>&1 | grep "connecting to agent" >/dev/null && echo "ok" || echo "ko")" == "ok" ]
         then
         {
+            /bin/rm -f "${SSH_ENV}"
             killall ssh-agent
             start_agent;
+            . "${SSH_ENV}" > /dev/null
+        }
+        fi
+
+        if [ "$(ssh-add -l >/dev/null 2>&1 && echo "ok" || echo "ko")" == "ko" ]
+        then
+        {
+            ssh-add
         }
         fi
     else
